@@ -1,0 +1,38 @@
+body {
+    font-family: Arial;
+}
+
+.calculator {
+    max-width: 400px;
+    margin: 30px auto;
+    background: #ddd;
+    text-align: left;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.display {
+    background: white;
+    border: 5px solid black;
+    border-radius: 15px;
+    font: bold 3em Arial;
+    text-align: right;
+}
+
+.btns {
+    margin: 10px auto;
+    max-width: 350px;
+    border: 5px solid black;
+    border-radius: 15px;
+    background: #ccc;
+}
+
+.num-btn, .eql-btn, .clr-btn {
+    margin: 8px;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+    font: bold 3em Arial;
+}
