@@ -3,9 +3,9 @@ body {
 }
 
 .calculator {
-    max-width: 400px;
+    max-width: 450px;
     margin: 30px auto;
-    background: #ddd;
+    background: black;
     text-align: left;
     padding: 30px;
     border-radius: 10px;
@@ -13,26 +13,39 @@ body {
 
 .display {
     background: white;
-    border: 5px solid black;
+    width: 304px;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid black;
     border-radius: 15px;
     font: bold 3em Arial;
     text-align: right;
 }
 
 .btns {
-    margin: 10px auto;
-    max-width: 350px;
-    border: 5px solid black;
-    border-radius: 15px;
-    background: #ccc;
+    margin: auto;
+    width: 314px;
+    background: grey;
 }
 
-.num-btn, .eql-btn, .clr-btn {
-    margin: 8px;
-    padding: 30px;
-    border: 1px solid #ddd;
+.num-btn, .op-btn, .fun-btn {
+    padding: 20px;
+    width: 75px;
+    border: 1px solid #333;
     border-radius: 12px;
-    background: white;
+    background: rgb(42, 47, 51);
     cursor: pointer;
-    font: bold 3em Arial;
+    font: 2em Arial;
+    color: white;
 }
+
+.fun-btn {
+    background: rgb(0, 128, 255);
+    font-size: 1.5em;
+}
+
+.op-btn {
+    background: rgb(0, 128, 255);
+    font-size: 1.5em;
+}
+

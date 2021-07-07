@@ -30,40 +30,39 @@ function operate(operator, a, b) {
 }
 
 const calculator = document.querySelector('.calculator');
-const buttons = document.querySelector('.btns');
-function createCalculator() {
-    for (let i = 9; i >= 0; i--) {
-        const button = document.createElement('button');
-        button.classList.add('num-btn');
-        button.textContent = i;
-        buttons.appendChild(button);
-        console.log(button.textContent);
-    }
+const display = document.querySelector('.display');
+const btns = document.querySelector('.btns');
+const numBtns = document.querySelectorAll('.num-btn');
+const clrBtn = document.querySelector('#clr-btn');
+const opBtns = document.querySelectorAll('.op-btn');
+let number = 0;
+let operation = undefined;
+let inOperation = false;
 
-    const eqlBtn = document.createElement('button');
-    eqlBtn.classList.add('eql-btn')
-    eqlBtn.textContent = '=';
-    buttons.appendChild(eqlBtn);
-
-    const clrBtn = document.createElement('button');
-    clrBtn.classList.add('clr-btn')
-    clrBtn.textContent = 'clr';
-    buttons.appendChild(clrBtn);
-
-    const addBtn = document.createElement('button');
-    addBtn.classList.add('op-btn');
-    addBtn.textContent = '+';
-    
-    const subBtn = document.createElement('button');
-    subBtn.classList.add('op-btn');
-    subBtn.textContent = '-';
-
-    const mulBtn = document.createElement('button');
-    mulBtn.classList.add('op-btn');
-    mulBtn.textContent = '*';
-
-    const divBtn = document.createElement('button');
-    divBtn.classList.add('op-btn');
-    divBtn.textContent = '/';
+function updateDisplay(value) {
+    let ogValue = display.textContent;
+    let newValue = Number(ogValue * 10) + Number(value);
+    display.textContent = newValue;
 }
+
+function clear() {
+    display.textContent = 0;
+    number = 0;
+    operation = undefined;
+    inOperation = false;
+}
+
+function createCalculator() {
+    numBtns.forEach(btn => {
+        let value = btn.textContent;
+        btn.addEventListener('click', () => {
+            updateDisplay(value);
+        });
+    });
+
+    clrBtn.addEventListener('click', () => {
+        clear();
+    });
+}
+
 createCalculator();
