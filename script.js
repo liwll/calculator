@@ -26,19 +26,25 @@ function operate(operator, a, b) {
             return multiply(a, b);
         case '/':
             return divide(a, b);
+        case '=':
+            return a;
     }
 }
 
 const calculator = document.querySelector('.calculator');
 const display = document.querySelector('.display');
 const btns = document.querySelector('.btns');
-const numBtns = document.querySelectorAll('.num-btn');
 const clrBtn = document.querySelector('#clr-btn');
+const negBtn = document.querySelector('#neg-btn');
+const perBtn = document.querySelector('#per-btn');
+const delBtn = document.querySelector('#del-btn');
+const decBtn = document.querySelector('#dec-btn');
 const opBtns = document.querySelectorAll('.op-btn');
-let number = 0;
-let numberOther = 0;
+const numBtns = document.querySelectorAll('.num-btn');
+let num = 0;
+let numPair = 0;
 let operator = undefined;
-let gettingNumOther = false;
+let gettingNumPair = false;
 
 
 function updateDisplay(value) {
@@ -47,22 +53,23 @@ function updateDisplay(value) {
 
 function clear() {
     display.textContent = 0;
-    number = 0;
-    numberOther = 0;
+    num = 0;
+    numPair = 0;
     operator = undefined;
+    gettingNumPair = false;
 }
 
 function createCalculator() {
     numBtns.forEach(btn => {
         let value = btn.textContent;
         btn.addEventListener('click', () => {
-            if (gettingNumOther) {
-                numberOther = (numberOther * 10) + Number(value);
-                updateDisplay(numberOther);
+            if (gettingNumPair) {
+                numPair = (numPair * 10) + Number(value);
+                updateDisplay(numPair);
             }
             else {
-                number = (number * 10) + Number(value);
-                updateDisplay(number);
+                num = Number(num + value);
+                updateDisplay(num);
             }
         });
     });
@@ -71,22 +78,43 @@ function createCalculator() {
         clear();
     });
 
+    negBtn.addEventListener('click', () => {
+        num = Number(- + num);
+        updateDisplay(num);
+    })
+
+    perBtn.addEventListener('click', () => {
+        num = num / 100;
+        updateDisplay(num);
+    })
+
+    decBtn.addEventListener('click', () => {
+        num = num + '.';
+        updateDisplay(num);
+    })
+
+    delBtn.addEventListener('click', () => {
+        num = String(num).substring(0, String(num).length - 1);
+        console.log(num)
+        updateDisplay(num);
+    })
+
     opBtns.forEach(btn => {
         let operation = btn.textContent;
         btn.addEventListener('click', () => {
             if (operator != undefined) {
-                if (numberOther === 0) {
-                    number = operate(operator, number, number);
-                    updateDisplay(number);
+                if (numPair === 0) {
+                    num = operate(operator, num, num);
+                    updateDisplay(num);
                 }
                 else {
-                    number = operate(operator, number, numberOther);
-                    updateDisplay(number);
-                    numberOther = 0;
+                    num = operate(operator, num, numPair);
+                    updateDisplay(num);
+                    numPair = 0;
                 }
             }
             operator = operation;
-            gettingNumOther = true;
+            gettingNumPair = true;
         });
     });
 }
