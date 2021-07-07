@@ -1,50 +1,68 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: normal;
+    color: black;
+}
+
 body {
-    font-family: Arial;
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(to right, aqua, pink);
 }
 
 .calculator {
-    max-width: 350px;
-    margin: 30px auto;
-    background: aqua;
-    text-align: left;
-    padding: 30px;
-    border-radius: 10px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
 
 .display {
-    background: white;
-    width: 304px;
-    margin: 10px auto;
+    grid-column: 1 / -1;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
     padding: 10px;
-    border: 1px solid black;
-    font: bold 1.5em Arial;
-    text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
+    color: rgba(5, 5, 5, .75);
+    font-size: 2em;
 }
 
-.btns {
-    margin: auto;
-    width: 314px;
-    background: white;
-}
-
-.num-btn, .op-btn, .fun-btn {
-    padding: 20px;
-    width: 75px;
-    border: 1px solid #333;
-    border-radius: 12px;
-    background: rgb(42, 47, 51);
+.calculator > button {
+    border: 1px solid #000;
+    outline: none;
+    background: rgba(12, 12, 12, 0.75);
     cursor: pointer;
-    font: 2em Arial;
+    font-size: 2em;
     color: white;
 }
 
-.fun-btn {
-    background: rgb(0, 128, 255);
-    font-size: 1.5em;
+.calculator > button:hover {
+    background: rgba(12, 12, 12, 0.9);
 }
 
-.op-btn {
-    background: rgb(0, 128, 255);
-    font-size: 1.5em;
+.calculator > .op-btn {
+    background-color: rgba(50, 50, 50, 0.1);
 }
 
+.calculator > .op-btn:hover {
+    background-color: rgba(50, 50, 50, 0.5);
+}
+
+.calculator > .op-btn:active {
+    background-color: rgba(50, 50, 50, 0.1);
+}
+
+.calculator > .fun-btn {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.calculator > .fun-btn:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}

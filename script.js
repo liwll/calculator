@@ -33,7 +33,6 @@ function operate(operator, a, b) {
 
 const calculator = document.querySelector('.calculator');
 const display = document.querySelector('.display');
-const btns = document.querySelector('.btns');
 const clrBtn = document.querySelector('#clr-btn');
 const negBtn = document.querySelector('#neg-btn');
 const perBtn = document.querySelector('#per-btn');
@@ -95,7 +94,7 @@ function createCalculator() {
 
     delBtn.addEventListener('click', () => {
         num = String(num).substring(0, String(num).length - 1);
-        console.log(num)
+        console.log(num);
         updateDisplay(num);
     })
 
