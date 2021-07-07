@@ -63,7 +63,7 @@ function createCalculator() {
         let value = btn.textContent;
         btn.addEventListener('click', () => {
             if (gettingNumPair) {
-                numPair = (numPair * 10) + Number(value);
+                numPair = Number(numPair + value);
                 updateDisplay(numPair);
             }
             else {
@@ -88,14 +88,35 @@ function createCalculator() {
     })
 
     decBtn.addEventListener('click', () => {
-        num = num + '.';
-        updateDisplay(num);
+        let decimalCount = 0;
+        let string = String(display.textContent);
+        for (let i = 0; i < string.length; i++) {
+            if (string.charAt(i) === '.') {
+                decimalCount++;
+            }
+        }
+
+        if (decimalCount === 0) {
+            if (gettingNumPair) {
+                numPair = numPair + '.';
+                updateDisplay(numPair);
+            }
+            else {
+                num = num + '.';
+                updateDisplay(num);
+            }
+        }
     })
 
     delBtn.addEventListener('click', () => {
-        num = String(num).substring(0, String(num).length - 1);
-        console.log(num);
-        updateDisplay(num);
+        if (gettingNumPair) {
+            numPair = String(numPair).substring(0, String(numPair).length - 1);
+            updateDisplay(numPair);
+        }
+        else {
+            num = String(num).substring(0, String(num).length - 1);
+            updateDisplay(num);
+        }
     })
 
     opBtns.forEach(btn => {
