@@ -36,32 +36,58 @@ const numBtns = document.querySelectorAll('.num-btn');
 const clrBtn = document.querySelector('#clr-btn');
 const opBtns = document.querySelectorAll('.op-btn');
 let number = 0;
-let operation = undefined;
-let inOperation = false;
+let numberOther = 0;
+let operator = undefined;
+let gettingNumOther = false;
+
 
 function updateDisplay(value) {
-    let ogValue = display.textContent;
-    let newValue = Number(ogValue * 10) + Number(value);
-    display.textContent = newValue;
+    display.textContent = value;
 }
 
 function clear() {
     display.textContent = 0;
     number = 0;
-    operation = undefined;
-    inOperation = false;
+    numberOther = 0;
+    operator = undefined;
 }
 
 function createCalculator() {
     numBtns.forEach(btn => {
         let value = btn.textContent;
         btn.addEventListener('click', () => {
-            updateDisplay(value);
+            if (gettingNumOther) {
+                numberOther = (numberOther * 10) + Number(value);
+                updateDisplay(numberOther);
+            }
+            else {
+                number = (number * 10) + Number(value);
+                updateDisplay(number);
+            }
         });
     });
 
     clrBtn.addEventListener('click', () => {
         clear();
+    });
+
+    opBtns.forEach(btn => {
+        let operation = btn.textContent;
+        btn.addEventListener('click', () => {
+            if (operator != undefined) {
+                if (numberOther === 0) {
+                    number = operate(operator, number, number);
+                    updateDisplay(number);
+                }
+                else {
+                    number = operate(operator, number, numberOther);
+                    updateDisplay(number);
+                    numberOther = 0;
+                }
+            }
+            operator = operation;
+            gettingNumOther = true;
+        });
     });
 }
 

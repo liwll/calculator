@@ -3,9 +3,9 @@ body {
 }
 
 .calculator {
-    max-width: 450px;
+    max-width: 350px;
     margin: 30px auto;
-    background: black;
+    background: aqua;
     text-align: left;
     padding: 30px;
     border-radius: 10px;
@@ -17,15 +17,14 @@ body {
     margin: 10px auto;
     padding: 10px;
     border: 1px solid black;
-    border-radius: 15px;
-    font: bold 3em Arial;
+    font: bold 1.5em Arial;
     text-align: right;
 }
 
 .btns {
     margin: auto;
     width: 314px;
-    background: grey;
+    background: white;
 }
 
 .num-btn, .op-btn, .fun-btn {
